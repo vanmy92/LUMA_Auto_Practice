@@ -1,0 +1,8 @@
+{
+    "login": {
+      "LOGIN_BUTTON": "//button[text()='Login']",
+      "EMAIL_ID_FIELD": "//input[@name='email']",
+      "PASSWORD_FIELD": "//input[@name='password']",
+      "SUBMIT_BUTTON": "(//button[@type='submit'])[1]"
+    }
+  }
