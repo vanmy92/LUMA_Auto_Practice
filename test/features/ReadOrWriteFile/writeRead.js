@@ -1,13 +1,10 @@
 import fs from "fs";
-import { Options } from "@wdio/types";
-import chai from "chai";
-
 class WriteReadPage {
-  writeFileWithCallback(path, data) {
+  writeFileWithCallback =  async (path, data) => {
     return fs.writeFileSync(path, data);
   }
   
-  readFileWithCallback(path) {
+  readFileWithCallback= async (path) =>{
     return fs.readFileSync(path, "utf8");
   }
 

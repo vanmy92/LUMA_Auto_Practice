@@ -10,5 +10,6 @@ Given(/^I am on the home page$/, async () => {
 
 When(/^Navigate to SignUp page$/, async () => {
   homePage.navigateToSignUp();
-  await browser.debug();
+  await browser.pause(2000)
+
 });
