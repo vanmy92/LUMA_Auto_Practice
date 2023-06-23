@@ -71,7 +71,7 @@ class AuthPage extends Page{
   async clickMyAccount(){
     await this.click(await this.btnLogout_1)
     await browser.pause(1000);
-    await this.ckick(await this.btnMyAccount)
+    await this.click(await this.btnMyAccount)
   }
 }
 export default new AuthPage();
