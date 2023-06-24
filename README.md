@@ -16,3 +16,4 @@ npx wdio config
 npm install chai
 npm i faker
 npm install faker --save-dev
+npm install --save-dev chai

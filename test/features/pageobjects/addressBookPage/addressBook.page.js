@@ -44,7 +44,7 @@ class AddressBook extends Page {
     // console.log(values);
     const length_value = values.length;
     let locate = Math.floor(Math.random() * length_value);
-    await this.checkStat_Province.selectByIndex(2)
+    await this.checkStat_Province.selectByIndex(locate)
 
 
     const options_2 = await this.checkCountry.$$("option");
@@ -57,11 +57,8 @@ class AddressBook extends Page {
     // console.log(values);
     const length_value_2 = values_2.length;
     let locate_2 = Math.floor(Math.random() * length_value_2);
-    await this.checkStat_Province.selectByIndex(locate_2)
-    await browser.pause(5000);
     await this.checkCountry.selectByIndex(locate_2)
-
-    await browser.pause(5000);
+    await this.checkCountry.selectByIndex(locate_2)
     
 
   }
@@ -78,21 +75,9 @@ class AddressBook extends Page {
     await this.inputZip.setValue(address.zip);
     await this.randomStateAndCountry()
     await browser.pause(3000);
-
     await this.click(await this.btnSaveAddress)
     await browser.pause(3000);
 
-
-
-    // const address = {
-    //   company: faker.company.companyName(),
-    //   phoneNumber: faker.phone.phoneNumber(),
-    //   streetAddress_1: faker.address.streetAddress(),
-    //   streetAddress_2: faker.address.secondaryAddress(),
-    //   streetAddress_3: faker.address.country(),
-    //   city: faker.address.city(),
-    //   zip: faker.address.zipCode(),
-    // };
 
   }
 

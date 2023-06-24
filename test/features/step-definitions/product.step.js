@@ -5,6 +5,9 @@ import authPage from "../pageobjects/auth.page"
 import myaccountPage from "../pageobjects/myAccountPage/myaccount.page"
 import addressBookPage from "../pageobjects/addressBookPage/addressBook.page"
 import faker from "faker";
+import popUpCart from "../pageobjects/popUpCart/popUpCart.page"
+import shippingAddressPage from "../pageobjects/checkoutPage/shippingAddress.page"
+import reviewAndPaymentsPage from "../pageobjects/checkoutPage/reviewAndPayments.page"
 
 When(/^I Add below the product to cart$/, async (table) =>{
     
@@ -24,15 +27,24 @@ Then(/^User changes the address of the checkout$/, async()=>{
         streetAddress_1: faker.address.streetAddress(),
         streetAddress_2: faker.address.secondaryAddress(),
         streetAddress_3: faker.address.country(),
-        city: faker.address.city(),
+        city: faker.address.city(),  
         zip: faker.address.zipCode(),
       };
      await addressBookPage.enterAddress(address)
-     await browser.debug()
+     await browser.pause(2000)
       
 
     // await addressBookPage.randomStateAndCountry()
 })
 Then(/^I shall validate shopping cart as below$/, async (table) =>{
-
+    await popUpCart.clickYourCart()
+    await popUpCart.clickProceedToCheckOut()
+    await shippingAddressPage.verifyShopingCart(table)
+   await browser.debug()
+})
+Then(/^I shall be able to buy the product$/, async () =>{
+    
+    await shippingAddressPage.clickNextBtn()
+    await reviewAndPaymentsPage.placeOder()
+   await browser.debug()
 })
