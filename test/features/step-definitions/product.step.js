@@ -21,7 +21,7 @@ Then(/^User changes the address of the checkout$/, async()=>{
     // await authPage.clickMyAccount()
     await myaccountPage.clickManageAddresses()
 
-    const address = {
+    const addresses = {
         company: faker.company.companyName(),
         phoneNumber: faker.phone.phoneNumber(),
         streetAddress_1: faker.address.streetAddress(),
@@ -30,11 +30,21 @@ Then(/^User changes the address of the checkout$/, async()=>{
         city: faker.address.city(),  
         zip: faker.address.zipCode(),
       };
-     await addressBookPage.enterAddress(address)
+
+    global.ShareVariable.address = addresses
+
+     await addressBookPage.enterAddress(addresses)
      await browser.pause(2000)
       
 
     // await addressBookPage.randomStateAndCountry()
+      console.log(`11111111111`)
+    console.log(global.ShareVariable.address)
+    console.log(global.ShareVariable.email)
+    console.log(global.ShareVariable.password)
+
+    
+
 })
 Then(/^I shall validate shopping cart as below$/, async (table) =>{
     await popUpCart.clickYourCart()

@@ -58,7 +58,7 @@ class ShippingAddressPage extends Page {
         }
       });
 
-      chai.expect(await this.txtModel.getText()).to.equal(element.model);
+      await chai.expect(await this.txtModel.getText()).to.equal(element.model);
     //   expect(await this.txtModel.getText()).toEqual(element.model);
       await browser.pause(2000)
       // await browser.keys("Enter");

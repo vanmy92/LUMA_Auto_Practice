@@ -225,7 +225,8 @@ exports.config = {
     beforeFeature: function (uri, feature) {
         global.ShareVariable={
             email: "",
-            password: ""
+            password: "",
+            address:{}
         }
     },
     /**
