@@ -2,6 +2,7 @@ import { expect } from "chai";
 import Page from "../page";
 import chai from "chai";
 import popUpCart from "../popUpCart/popUpCart.page"
+import calculatorPage from "../detailsPage/calculator.page";
 class ProductPage extends Page {
   get btnSubCategory() {
     return $$(`//*[@id="narrow-by-list2"]/dd/ol/li/a`);
@@ -55,8 +56,12 @@ class ProductPage extends Page {
       await browser.pause(2000)
       // await browser.keys("Enter");
       await this.inputQuantity.setValue(element.quantity);
-      await browser.pause(2000)
+      await browser.pause(3000)
+      await calculatorPage.calculatorAllItem()
       await this.btnAddToCart.click();
+      
+
+
       await browser.pause(2000)
     }
 

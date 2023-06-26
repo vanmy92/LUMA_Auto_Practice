@@ -15,6 +15,7 @@ When(/^I Add below the product to cart$/, async (table) =>{
 
     await productPagePage.addProduct(table)
     await browser.pause(1000)
+    await browser.debug()
 
 
 })

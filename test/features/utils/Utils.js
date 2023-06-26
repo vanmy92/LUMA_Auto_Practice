@@ -3,6 +3,7 @@ let dynamicData = {
   password: "",
   address: {},
 };
+let prices = []
 let staticData = {
   email: "mytest_6zw@gmail.com",
   password: "1234asdf@",
@@ -16,4 +17,4 @@ let staticData = {
     zip: "19658",
   },
 };
-module.exports = { dynamicData, staticData };
+module.exports = { dynamicData, staticData, prices};
