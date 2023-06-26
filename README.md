@@ -24,3 +24,4 @@ npm install --save-dev chai
 npm install @wdio/allure-reporter --save-dev
 
 npm i allure-commandline
+ npm install allure-commandline --save-dev
