@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": "#form-validate > div > div.primary > button"
+}

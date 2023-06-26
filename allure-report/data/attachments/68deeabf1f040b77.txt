@@ -1,0 +1,5 @@
+{
+  "error": "no such element",
+  "message": "no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//*[@class=\"customer-welcome\"]/span/button\"}\n  (Session info: chrome=114.0.5735.134)",
+  "stacktrace": "Backtrace:\n\tGetHandleVerifier [0x0040A813+48355]\n\t(No symbol) [0x0039C4B1]\n\t(No symbol) [0x002A5358]\n\t(No symbol) [0x002D09A5]\n\t(No symbol) [0x002D0B3B]\n\t(No symbol) [0x002FE232]\n\t(No symbol) [0x002EA784]\n\t(No symbol) [0x002FC922]\n\t(No symbol) [0x002EA536]\n\t(No symbol) [0x002C82DC]\n\t(No symbol) [0x002C93DD]\n\tGetHandleVerifier [0x0066AABD+2539405]\n\tGetHandleVerifier [0x006AA78F+2800735]\n\tGetHandleVerifier [0x006A456C+2775612]\n\tGetHandleVerifier [0x004951E0+616112]\n\t(No symbol) [0x003A5F8C]\n\t(No symbol) [0x003A2328]\n\t(No symbol) [0x003A240B]\n\t(No symbol) [0x00394FF7]\n\tBaseThreadInitThunk [0x753000C9+25]\n\tRtlGetAppContainerNamedObjectPath [0x77437B4E+286]\n\tRtlGetAppContainerNamedObjectPath [0x77437B1E+238]\n"
+}

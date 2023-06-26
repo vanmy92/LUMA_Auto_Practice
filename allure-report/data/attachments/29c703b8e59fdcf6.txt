@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//*[@id=\"ui-id-2\"]/li/a//*[contains(text(),'Gear')]"
+}

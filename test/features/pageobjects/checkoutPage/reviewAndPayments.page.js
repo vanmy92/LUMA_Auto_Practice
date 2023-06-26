@@ -14,7 +14,7 @@ class ReviewAndPaymentPage extends Page {
   placeOder = async() =>{
 
     // await this.verifyPageHeadingCheckOut("Payment Method")
-    
+    await browser.pause(2000)
     await this.clickPlaceOder()
     
     await browser.pause(3000)

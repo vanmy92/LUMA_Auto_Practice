@@ -17,3 +17,10 @@ npm install chai
 npm i faker
 npm install faker --save-dev
 npm install --save-dev chai
+
+
+
+
+npm install @wdio/allure-reporter --save-dev
+
+npm i allure-commandline

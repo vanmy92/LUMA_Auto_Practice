@@ -8,12 +8,13 @@ import faker from "faker";
 import popUpCart from "../pageobjects/popUpCart/popUpCart.page"
 import shippingAddressPage from "../pageobjects/checkoutPage/shippingAddress.page"
 import reviewAndPaymentsPage from "../pageobjects/checkoutPage/reviewAndPayments.page"
-
+import utils from "../utils/Utils"
 When(/^I Add below the product to cart$/, async (table) =>{
     
     // await navigationPage.clickBags()       test click()
 
     await productPagePage.addProduct(table)
+    await browser.pause(1000)
 
 
 })
@@ -31,7 +32,7 @@ Then(/^User changes the address of the checkout$/, async()=>{
         zip: faker.address.zipCode(),
       };
 
-    global.ShareVariable.address = addresses
+      utils.dynamicData.address = addresses
 
      await addressBookPage.enterAddress(addresses)
      await browser.pause(2000)
@@ -39,9 +40,9 @@ Then(/^User changes the address of the checkout$/, async()=>{
 
     // await addressBookPage.randomStateAndCountry()
       console.log(`11111111111`)
-    console.log(global.ShareVariable.address)
-    console.log(global.ShareVariable.email)
-    console.log(global.ShareVariable.password)
+    console.log(utils.dynamicData.address)
+    console.log(utils.dynamicData.email)
+    console.log(utils.dynamicData.password)
 
     
 

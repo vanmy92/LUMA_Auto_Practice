@@ -1,3 +1,13 @@
+import allureReporter from "@wdio/allure-reporter"
+let allure_config = {
+    outputDir: 'allure-results',
+    disableWebdriverStepsReporting: true,
+    disableWebdriverScreenshotsReporting: true,
+    useCucumberStepReporter: true,
+    addConsoleLogs:true
+
+}
+
 exports.config = {
     //
     // ====================
@@ -124,7 +134,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: [['allure', {outputDir: 'allure-results'}]],
+    reporters: [['allure', allure_config]],
 
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
@@ -207,6 +217,7 @@ exports.config = {
     before: function (capabilities, specs) {
         // require("chai")
         // global.expect = chai.expect;
+        allureReporter.addLabel("Initial configuration")
     },
     /**
      * Runs before a WebdriverIO command gets executed.
@@ -223,11 +234,13 @@ exports.config = {
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
     beforeFeature: function (uri, feature) {
-        global.ShareVariable={
-            email: "",
-            password: "",
-            address:{}
-        }
+        // global.ShareVariable={
+        //     email: "",
+        //     password: "",
+        //     address:{}
+        // }
+        allureReporter.addStep("Starting feature: " + feature.name)
+    
     },
     /**
      *
@@ -235,8 +248,8 @@ exports.config = {
      * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
      * @param {object}                 context  Cucumber World object
      */
-    // beforeScenario: function (world, context) {
-    // },
+    beforeScenario: function (world, context) {
+    },
     /**
      *
      * Runs before a Cucumber Step.
@@ -257,8 +270,9 @@ exports.config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: function (step, scenario, result, context) {
+        browser.takeScreenshot()
+    },
     /**
      *
      * Runs after a Cucumber Scenario.

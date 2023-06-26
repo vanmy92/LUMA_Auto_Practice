@@ -1,0 +1,4 @@
+.........Console Logs.........
+
+[90m2023-06-26T03:04:19.958Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Received SIGINT, giving process 5000ms to shutdown gracefully
+[90m2023-06-26T03:04:19.975Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Run worker command: endSession

@@ -61,7 +61,6 @@ class AuthPage extends Page{
     await browser.pause(2000);
     await this.btnSignIn.click();
     await browser.pause(3000);
-
   };
   signOut = async () => {
     await this.btnLogout_1.click();

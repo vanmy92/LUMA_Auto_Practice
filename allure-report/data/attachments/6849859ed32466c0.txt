@@ -1,0 +1,5 @@
+{
+  "error": "no such element",
+  "message": "no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//*[contains(text(),'Create an Account')]\"}\n  (Session info: chrome=114.0.5735.134)",
+  "stacktrace": "Backtrace:\n\tGetHandleVerifier [0x0037A813+48355]\n\t(No symbol) [0x0030C4B1]\n\t(No symbol) [0x00215358]\n\t(No symbol) [0x002409A5]\n\t(No symbol) [0x00240B3B]\n\t(No symbol) [0x0026E232]\n\t(No symbol) [0x0025A784]\n\t(No symbol) [0x0026C922]\n\t(No symbol) [0x0025A536]\n\t(No symbol) [0x002382DC]\n\t(No symbol) [0x002393DD]\n\tGetHandleVerifier [0x005DAABD+2539405]\n\tGetHandleVerifier [0x0061A78F+2800735]\n\tGetHandleVerifier [0x0061456C+2775612]\n\tGetHandleVerifier [0x004051E0+616112]\n\t(No symbol) [0x00315F8C]\n\t(No symbol) [0x00312328]\n\t(No symbol) [0x0031240B]\n\t(No symbol) [0x00304FF7]\n\tBaseThreadInitThunk [0x750700C9+25]\n\tRtlGetAppContainerNamedObjectPath [0x770A7B4E+286]\n\tRtlGetAppContainerNamedObjectPath [0x770A7B1E+238]\n"
+}
