@@ -3,7 +3,7 @@ node_modules/
 # package.json
 allure-results/
 allure-report/
-
+#abcd
 logs/
 # Logs
 logs
