@@ -13,3 +13,9 @@ When(/^Navigate to SignUp page$/, async () => {
   await browser.pause(2000)
 
 });
+
+When(/^Navigate to SignIn page$/, async () => {
+  homePage.navigateToSignIn();
+  await browser.pause(2000)
+
+});

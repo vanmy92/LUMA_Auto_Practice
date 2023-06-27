@@ -52,15 +52,14 @@ exports.config = {
     //
     capabilities: [{
         maxInstances: 1,
-        browserName: 'chrome',
+        browserName: "chrome",
         acceptInsecureCerts: true,
         'goog:chromeOptions': {
             args: [
                 "--disable-web-security",
-                "--headless",
                 "--disable-dev-shm-usage",
                 "--no-sandbox",
-                "--window-size=1920,1080",
+                "--window-size=1300,1000",
             ],
         }
     }],
@@ -270,7 +269,7 @@ exports.config = {
      * @param {object}             context          Cucumber World object
      */
     afterStep: function (step, scenario, result, context) {
-        browser.takeScreenshot()
+        // browser.takeScreenshot()
     },
     /**
      *

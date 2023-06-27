@@ -41,8 +41,9 @@ class AddressBook extends Page {
       values.push(value);
     }
     values.shift();
-    // console.log(values);
-    const length_value = values.length;
+    // console.log(values) 
+       const length_value = values.length;
+;
     let locate = Math.floor(Math.random() * length_value);
     await this.checkStat_Province.selectByIndex(locate)
 

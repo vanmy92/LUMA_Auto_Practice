@@ -53,4 +53,11 @@ When(/^Login using newly created (dynamic|static) user credentials$/, async (cen
 
 })
 
+Then(/^I loggin with the defualt username and password$/, async () =>{
+    
+    await authPage.signIn()
+    // allureReporter.addSeverity("minor")
+    await browser.pause(1000)
+
+})
 

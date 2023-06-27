@@ -57,7 +57,7 @@ class ProductPage extends Page {
       // await browser.keys("Enter");
       await this.inputQuantity.setValue(element.quantity);
       await browser.pause(3000)
-      await calculatorPage.calculatorAllItem()
+      await calculatorPage.calculator()
       await this.btnAddToCart.click();
       
 

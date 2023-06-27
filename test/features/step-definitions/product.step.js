@@ -60,3 +60,10 @@ Then(/^I shall be able to buy the product$/, async () =>{
     await reviewAndPaymentsPage.placeOder()
    await browser.debug()
 })
+
+Then(/^User clicks on YourCart button$/, async () =>{
+    
+    await popUpCart.clickYourCart()
+   await browser.pause(1000)
+})
+
