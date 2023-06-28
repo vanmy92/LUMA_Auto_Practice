@@ -20,7 +20,7 @@ Then(/^I verify generally all the information is correct in the popup$/, async (
     await browser.debug()
  })
 
- Then(/^I want to update some quantity in each items in the popup$/, async (table) =>{
+Then(/^I want to update some quantity in each items in the popup$/, async (table) =>{
     await popUpCartPage.updateQuantity(table)
     await browser.debug()
  })

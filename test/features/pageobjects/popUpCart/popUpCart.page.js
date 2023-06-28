@@ -112,11 +112,12 @@ class PopUpCart extends Page {
   };
 
   updateQuantity = async (table) => {
-    const tableRow = table.hashes();
+    const tableRow_1 =await table.hashes();
 
-    for (const row of tableRow) {
+    for (const row of tableRow_1) {
       await this.txtEachNameItem.forEach(async (value) => {
         const titleName = await value.getText();
+        console.log(`titleName ${titleName}`)
         console.log(`row name ${row.name}`)
         console.log(`title name ${titleName}`)
         if (titleName === row.name) {
@@ -136,6 +137,9 @@ class PopUpCart extends Page {
           return;
         }
       });
+
+      await browser.pause(2000)
+
     }
   };
 }
