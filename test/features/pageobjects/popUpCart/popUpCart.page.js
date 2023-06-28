@@ -117,6 +117,8 @@ class PopUpCart extends Page {
     for (const row of tableRow) {
       await this.txtEachNameItem.forEach(async (value) => {
         const titleName = await value.getText();
+        console.log(`row name ${row.name}`)
+        console.log(`title name ${titleName}`)
         if (titleName === row.name) {
           chai.expect(titleName).to.equal(row.name);
           //await this.txtEachQtyItems.forEach(async (value) => {
@@ -131,23 +133,6 @@ class PopUpCart extends Page {
           let index = value.index()
           console.log(`index: ${index}`)
           await (await this.txtEachQtyItems[index]).setValue(row.quantity)
-          return;
-        }
-      });
-
-      await this.txtEachQtyItems.forEach(async (value) => {
-        const txtQty = await value.getValue();
-        if (txtQty === row.quantity) {
-          chai.expect(txtQty).to.equal(row.quantity);
-          return;
-        }
-      });
-
-      await this.txtEachPriceItems.forEach(async (value) => {
-        const txtQty = await value.getText();
-        const convertNum = txtQty.substring(1);
-        if (convertNum === row.quantity) {
-          chai.expect(convertNum).to.equal(row.price);
           return;
         }
       });

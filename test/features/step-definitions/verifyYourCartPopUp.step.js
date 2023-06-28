@@ -3,7 +3,7 @@ import calculatorPage from "../pageobjects/detailsPage/calculator.page"
 import popUpCartPage from "../pageobjects/popUpCart/popUpCart.page"
 Then(/^Calculate all the products$/, async () =>{
    await calculatorPage.calculatorAllItem()
-    await browser.debug()
+   await browser.debug()
 })
 
 Then(/^I verify generally all the information is correct in the popup$/, async (table) =>{

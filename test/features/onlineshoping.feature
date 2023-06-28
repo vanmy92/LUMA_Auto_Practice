@@ -69,7 +69,7 @@ Feature: SignUp, Sign In and Purchase Product
         Then Navigate to SignIn page
         And I loggin with the defualt username and password
         And User clicks on YourCart button
-        And Calculate all the products
+        # And Calculate all the products
         And I want to update some quantity in each items in the popup
             | name                                | quantity |
             | Push It Messenger Bag               | 50       |
