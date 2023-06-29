@@ -37,7 +37,7 @@ class ProductPage extends Page {
         console.log(`text abc: ${subCat}` )
         if (subCat === element.subCategory) {
           await value.click();
-          await browser.pause(2000);
+          await browser.pause(2000); 
           return;
         }
       });

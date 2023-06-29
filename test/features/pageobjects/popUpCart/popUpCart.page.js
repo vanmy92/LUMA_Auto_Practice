@@ -62,12 +62,21 @@ class PopUpCart extends Page {
       console.log(convertNumTotalPrice);
       console.log(elment.totalPrices);
       console.log(`3`);
+      // let numItem = await this.numberItems.length;
+      // console.log(typeof numItem);
+      // let conNumItem = parseInt(numItem);
+      // console.log(typeof conNumItem);
+      // console.log(conNumItem);
+      // await chai.expect(conNumItem).to.equal(elment.items);
+
       let numItem = await this.numberItems.length;
+
       console.log(typeof numItem);
-      let conNumItem = parseInt(numItem);
+      let conNumItem =await parseInt(numItem);
       console.log(typeof conNumItem);
       console.log(conNumItem);
-      await chai.expect(conNumItem).to.equal(elment.items);
+      let itemscn= await parseInt(elment.items)
+      await chai.expect(conNumItem).to.equal(itemscn);
 
       console.log(`4`);
       let totalAll = await this.convertTotalPrice();
@@ -112,35 +121,56 @@ class PopUpCart extends Page {
   };
 
   updateQuantity = async (table) => {
-    const tableRow_1 =await table.hashes();
+    console.log(`123134`)
 
-    for (const row of tableRow_1) {
+    const tableRow = table.hashes();
+
+    for (const row of tableRow) {
       await this.txtEachNameItem.forEach(async (value) => {
         const titleName = await value.getText();
-        console.log(`titleName ${titleName}`)
-        console.log(`row name ${row.name}`)
-        console.log(`title name ${titleName}`)
+        console.log(titleName)
+        console.log(row.name)
+        console.log(titleName)
         if (titleName === row.name) {
+          await browser.pause(2000);
+          await value.click()
+          console.log(row.name)
+        
           chai.expect(titleName).to.equal(row.name);
-          //await this.txtEachQtyItems.forEach(async (value) => {
-            //await value.setValue
-            // const txtQty = await value.getValue();
-            // if (txtQty === row.quantity) {
-            //   chai.expect(txtQty).to.equal(row.quantity);
-            //   return;
-            // }
-          //}
-          //);
-          let index = value.index()
-          console.log(`index: ${index}`)
-          await (await this.txtEachQtyItems[index]).setValue(row.quantity)
           return;
         }
       });
-
-      await browser.pause(2000)
-
+      await browser.debug()
+      
     }
+
+    // for (const row of tableRow_1) {
+    //   await this.txtEachNameItem.forEach(async (value) => {
+    //     const titleName = await value.getText();
+    //     console.log(`titleName ${titleName}`)
+    //     console.log(`row name ${row.name}`)
+    //     console.log(`title name ${titleName}`)
+    //     if (titleName === row.name) {
+    //       chai.expect(titleName).to.equal(row.name);
+    //       //await this.txtEachQtyItems.forEach(async (value) => {
+    //         //await value.setValue
+    //         // const txtQty = await value.getValue();
+    //         // if (txtQty === row.quantity) {
+    //         //   chai.expect(txtQty).to.equal(row.quantity);
+    //         //   return;
+    //         // }
+    //       //}
+    //       //);
+    //       let index = value.index()
+    //       console.log(`index: ${index}`)
+    //       await (await this.txtEachQtyItems[index]).setValue(row.quantity)
+    //       return;
+    //     }
+    //   });
+
+    //   await browser.pause(2000)
+
+    // }
   };
 }
 export default new PopUpCart();

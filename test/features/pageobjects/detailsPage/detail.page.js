@@ -3,7 +3,7 @@ import Page from "../page"
 class DetailsPage extends Page{
    
     get txtPriceOfItem(){
-        return $(`//*[@class="product-info-price"]//*[contains(text(),'$')]`)
+        return $(`//*[@class="amount price-container"]//*[contains(text(),'$')]`)
     }
     get txtQty(){
         return $(`#qty`)
@@ -11,7 +11,7 @@ class DetailsPage extends Page{
 
 
     separatePrice = async ()=>{
-        let price =await this.txtPriceOfItem.getText()
+        let price = await this.txtPriceOfItem.getText()
         let convertPrice = price.substring(1)
         console.log(`convertPrice: ${convertPrice}`)
         return convertPrice
