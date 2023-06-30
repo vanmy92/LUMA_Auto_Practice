@@ -8,6 +8,7 @@ Then(/^Calculate all the products$/, async () =>{
 
 Then(/^I verify generally all the information is correct in the popup$/, async (table) =>{
     // await calculatorPage.calculatorAllItem()
+    console.log(`asdfasd`)
     await popUpCartPage.clickYourCart()
     await browser.pause(1000)
     await popUpCartPage.verifyGenerallyInfor(table)
