@@ -120,7 +120,7 @@ class PopUpCart extends Page {
     }
   };
 
-  updateQuantity = async (table) => {
+  _updateQuantity = async (table) => {
     console.log(`123134`);
     const tableRow = table.hashes();
     console.log(tableRow);
@@ -130,21 +130,24 @@ class PopUpCart extends Page {
         console.log(`1`);
         console.log(titleName);
         if (titleName === row.name) {
-          console.log(`2`);
-          console.log(row.name);
           // const btnCategory = $(
           //   `//*[@id="ui-id-2"]/li/a//*[contains(text(),'${element.category}')]`
           // );
-
           const setInput = $(
             `//*[@class="product"]//*[contains(text(),'${row.name}')]/../..//*[@data-item-qty]`
           );
+          await this.click(await setInput);
+          // await setInput.clearValue();
+          await browser.keys(["Control", "A"]);
+          await browser.keys(["Control", "C"]);
+          await browser.keys("Delete");
           await setInput.setValue(row.quantity);
-          const btnUpdate =await $(
+          const btnUpdate = await $(
             `//*[@class="product"]//*[contains(text(),'${row.name}')]/../..//*[@class="details-qty qty"]/button`
           );
           await browser.pause(2000);
-          await this.click(btnUpdate)
+          await this.click(await btnUpdate);
+          await browser.pause(2000);
           await chai.expect(titleName).to.equal(row.name);
           return;
         }
@@ -165,56 +168,13 @@ class PopUpCart extends Page {
       //   }
       // }
     }
-
-    // const tableRow = table.hashes();
-
-    // for (const row of tableRow) {
-    //   await this.txtEachNameItem.forEach(async (value) => {
-    //     const titleName = await value.getText();
-    //     console.log(titleName)
-    //     console.log(row.name)
-    //     console.log(titleName)
-    //     if (titleName === row.name) {
-    //       await browser.pause(2000);
-    //       await value.click()
-    //       console.log(row.name)
-
-    //       chai.expect(titleName).to.equal(row.name);
-    //       return;
-    //     }
-    //   });
-    //   await browser.debug()
-
-    // }
-
-    // for (const row of tableRow_1) {
-    //   await this.txtEachNameItem.forEach(async (value) => {
-    //     const titleName = await value.getText();
-    //     console.log(`titleName ${titleName}`)
-    //     console.log(`row name ${row.name}`)
-    //     console.log(`title name ${titleName}`)
-    //     if (titleName === row.name) {
-    //       chai.expect(titleName).to.equal(row.name);
-    //       //await this.txtEachQtyItems.forEach(async (value) => {
-    //         //await value.setValue
-    //         // const txtQty = await value.getValue();
-    //         // if (txtQty === row.quantity) {
-    //         //   chai.expect(txtQty).to.equal(row.quantity);
-    //         //   return;
-    //         // }
-    //       //}
-    //       //);
-    //       let index = value.index()
-    //       console.log(`index: ${index}`)
-    //       await (await this.txtEachQtyItems[index]).setValue(row.quantity)
-    //       return;
-    //     }
-    //   });
-
-    //   await browser.pause(2000)
-
-    // }
   };
+  get updateQuantity() {
+    return this._updateQuantity;
+  }
+  set updateQuantity(value) {
+    this._updateQuantity = value;
+  }
 
   // DONE
   // updateQuantity_2 = async () => {
