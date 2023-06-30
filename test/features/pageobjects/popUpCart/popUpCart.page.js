@@ -19,7 +19,7 @@ class PopUpCart extends Page {
   }
   get txtEachQtyItems() {
     return $$(
-      `//*[@class="minicart-items-wrapper"]/ol/li/div//*[@data-item-qty]`
+      `//*[@class="minicart-items-wrapper"]/ol/li/div//*[@data-item-qty]/input`
     );
   }
 
@@ -72,16 +72,16 @@ class PopUpCart extends Page {
       let numItem = await this.numberItems.length;
 
       console.log(typeof numItem);
-      let conNumItem =await parseInt(numItem);
+      let conNumItem = await parseInt(numItem);
       console.log(typeof conNumItem);
       console.log(conNumItem);
-      let itemscn= await parseInt(elment.items)
+      let itemscn = await parseInt(elment.items);
       await chai.expect(conNumItem).to.equal(itemscn);
 
       console.log(`4`);
       let totalAll = await this.convertTotalPrice();
-      console.log(totalAll);
-      chai.expect(totalAll).to.equal(elment.totalPrices);
+      let b = await parseInt(elment.totalPrices);
+      chai.expect(totalAll).to.equal(b);
     }
 
     // await chai.expect(numerItems).to.equal(tableRow.totalItems)
@@ -121,28 +121,71 @@ class PopUpCart extends Page {
   };
 
   updateQuantity = async (table) => {
-    console.log(`123134`)
-
+    console.log(`123134`);
     const tableRow = table.hashes();
-
+    console.log(tableRow);
     for (const row of tableRow) {
       await this.txtEachNameItem.forEach(async (value) => {
         const titleName = await value.getText();
-        console.log(titleName)
-        console.log(row.name)
-        console.log(titleName)
+        console.log(`1`);
+        console.log(titleName);
         if (titleName === row.name) {
+          console.log(`2`);
+          console.log(row.name);
+          // const btnCategory = $(
+          //   `//*[@id="ui-id-2"]/li/a//*[contains(text(),'${element.category}')]`
+          // );
+
+          const setInput = $(
+            `//*[@class="product"]//*[contains(text(),'${row.name}')]/../..//*[@data-item-qty]`
+          );
+          await setInput.setValue(row.quantity);
+          const btnUpdate =await $(
+            `//*[@class="product"]//*[contains(text(),'${row.name}')]/../..//*[@class="details-qty qty"]/button`
+          );
           await browser.pause(2000);
-          await value.click()
-          console.log(row.name)
-        
-          chai.expect(titleName).to.equal(row.name);
+          await this.click(btnUpdate)
+          await chai.expect(titleName).to.equal(row.name);
           return;
         }
       });
-      await browser.debug()
-      
+
+      // let a = await this.txtEachNameItem.leng;
+      // let  b= await parseInt(a)
+      // console.log(typeof b)
+      // for (const row_2 of await this.txtEachNameItem) {
+      //   const titleName = await row_2.getText();
+      //   console.log(`1`);
+      //   console.log(titleName);
+      //   if (titleName === row.name) {
+      //     console.log(`2`);
+      //     console.log(row.name);
+      //     await chai.expect(titleName).to.equal(row.name);
+      //     return;
+      //   }
+      // }
     }
+
+    // const tableRow = table.hashes();
+
+    // for (const row of tableRow) {
+    //   await this.txtEachNameItem.forEach(async (value) => {
+    //     const titleName = await value.getText();
+    //     console.log(titleName)
+    //     console.log(row.name)
+    //     console.log(titleName)
+    //     if (titleName === row.name) {
+    //       await browser.pause(2000);
+    //       await value.click()
+    //       console.log(row.name)
+
+    //       chai.expect(titleName).to.equal(row.name);
+    //       return;
+    //     }
+    //   });
+    //   await browser.debug()
+
+    // }
 
     // for (const row of tableRow_1) {
     //   await this.txtEachNameItem.forEach(async (value) => {
@@ -172,5 +215,19 @@ class PopUpCart extends Page {
 
     // }
   };
+
+  // DONE
+  // updateQuantity_2 = async () => {
+  //   console.log(`123134`);
+
+  //   const setInput =  $(`//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@data-item-qty]`)
+
+  //   const btnUpdate =  $(`//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@class="details-qty qty"]/button`)
+  //   await setInput.setValue(123);
+  //   await browser.pause(2000)
+  //   await click(btnUpdate)
+  //   await browser.pause(2000)
+
+  // };
 }
 export default new PopUpCart();
