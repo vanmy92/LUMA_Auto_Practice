@@ -130,14 +130,10 @@ class PopUpCart extends Page {
         console.log(`1`);
         console.log(titleName);
         if (titleName === row.name) {
-          // const btnCategory = $(
-          //   `//*[@id="ui-id-2"]/li/a//*[contains(text(),'${element.category}')]`
-          // );
           const setInput = $(
             `//*[@class="product"]//*[contains(text(),'${row.name}')]/../..//*[@data-item-qty]`
           );
           await this.click(await setInput);
-          // await setInput.clearValue();
           await browser.keys(["Control", "A"]);
           await browser.keys(["Control", "C"]);
           await browser.keys("Delete");
