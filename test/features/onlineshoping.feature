@@ -67,16 +67,16 @@ Feature: SignUp, Sign In and Purchase Product
 
 
 
-    # @regression  
-    # Scenario: TC_004 User edit some qty in YourCartPopup    DONE
-    #     Given I am on the home page
-    #     Then Navigate to SignIn page
-    #     And I loggin with the defualt username and password
-    #     And User clicks on YourCart button
-        # And I want to update some quantity in each items in the popup
-    #         | name                                | quantity |
-    #         | Push It Messenger Bag               | 50       |
-    #         | Harmony Lumaflex™ Strength Band Kit | 50       |
+    @regression  
+    Scenario: TC_004 User edit some qty in YourCartPopup    DONE
+        Given I am on the home page
+        Then Navigate to SignIn page
+        And I loggin with the defualt username and password
+        And User clicks on YourCart button
+        And I want to update some quantity in each items in the popup
+            | name                                | quantity |
+            | Push It Messenger Bag               | 50       |
+            | Harmony Lumaflex™ Strength Band Kit | 50       |
 
 
 
