@@ -34,6 +34,9 @@ class PopUpCart extends Page {
   get btnYourCart() {
     return $(`//*[@class="action showcart"]`);
   }
+  get btnViewAndEditCard(){
+    return $(`//*[contains(text(),'View and Edit Cart')]`)
+  }
   // Actions
 
   async clickProceedToCheckOut() {
@@ -41,6 +44,9 @@ class PopUpCart extends Page {
   }
   async clickYourCart() {
     await this.click(await this.btnYourCart);
+  }
+  async clickViewAndEditCart() {
+    await this.click(await this.btnViewAndEditCard);
   }
   convertTotalPrice = async () => {
     let totalPriceUI = await this.txtTotalPrice.getText();

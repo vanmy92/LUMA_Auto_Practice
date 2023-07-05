@@ -67,3 +67,9 @@ Then(/^User clicks on YourCart button$/, async () =>{
    await browser.pause(1000)
 })
 
+Then(/^User clicks on View And Edit button$/, async () =>{
+    
+    await popUpCart.clickYourCart()
+   await browser.pause(1000)
+})
+
