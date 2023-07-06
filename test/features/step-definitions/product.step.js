@@ -8,6 +8,7 @@ import faker from "faker";
 import popUpCart from "../pageobjects/popUpCart/popUpCart.page"
 import shippingAddressPage from "../pageobjects/checkoutPage/shippingAddress.page"
 import reviewAndPaymentsPage from "../pageobjects/checkoutPage/reviewAndPayments.page"
+import shoppingCartPage from "../pageobjects/checkoutPage/shoppingCart.page"
 import utils from "../utils/Utils"
 When(/^I Add below the product to cart$/, async (table) =>{
     
@@ -65,11 +66,26 @@ Then(/^User clicks on YourCart button$/, async () =>{
     
     await popUpCart.clickYourCart()
    await browser.pause(1000)
+   await browser.debug()
+
 })
 
 Then(/^User clicks on View And Edit button$/, async () =>{
     
-    await popUpCart.clickYourCart()
-   await browser.pause(1000)
-})
+    await popUpCart.clickViewAndEditCart()
+    await browser.debug()
 
+})
+When(/^Calculation each item in the shopping cart$/, async () =>{
+    
+    await shoppingCartPage.calculation()
+    await browser.debug()
+
+
+})
+Then(/^Verify details information are correct$/, async (table) =>{
+    
+    await shoppingCartPage.verifyShopingCart(table)
+    await browser.debug()
+
+})

@@ -12,7 +12,7 @@ class CalculatorPage extends Page {
     let total = price * qty;
     // let total = await this.calculator();
     console.log(`total one item: ${total}`);
-    let a = utils.prices;
+    let a = utils.prices; 
     console.log(`one price after assign`);
     console.log(a)
     console.log(a.push(total));

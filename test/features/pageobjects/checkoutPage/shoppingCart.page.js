@@ -1,14 +1,25 @@
 import { expect } from "chai";
 import Page from "../page";
-
-class ShippingAddressPage extends Page {
+import chai from "chai";
+import detailPage from "../detailsPage/detail.page";
+class shoppingCartPage extends Page {
   get getItemsNumber() {
-    return $(`//*[@class="cart item"]`);
+    return $$(`//*[@class="cart item"]`);
   }
-  
-  async clickNextBtn(){
-    await this.click(await this.btnNext)
+  get listTitleName() {
+    return $$(`//*[@class="cart item"]//*[@class="product-item-name"]/a`);
   }
+  get listQuantity(){
+    return $$(`//*[@class="col qty"]/div/div/label/input`)
+  }
+  get listPrices(){
+    return $$(`//*[@class="col price"]//*[contains(text(),'$')]`)
+  }
+
+  get getNumberItem() {
+    return this.getItemsNumber.length;
+  }
+
   addProduct = async (table) => {
     const tableRow = table.hashes();
     for (const element of tableRow) {
@@ -16,14 +27,14 @@ class ShippingAddressPage extends Page {
       const btnCategory = $(
         `//*[@id="ui-id-2"]/li/a//*[contains(text(),'${element.category}')]`
       );
-      console.log(`1111: ${element.category}`)
+      console.log(`1111: ${element.category}`);
       await this.click(await btnCategory);
       await browser.pause(2000);
 
       // click subCategory
       await this.btnSubCategory.forEach(async (value) => {
         const subCat = await value.getText();
-        console.log(`text abc: ${subCat}` )
+        console.log(`text abc: ${subCat}`);
         if (subCat === element.subCategory) {
           await value.click();
           await browser.pause(2000);
@@ -41,47 +52,70 @@ class ShippingAddressPage extends Page {
       });
 
       await chai.expect(await this.txtModel.getText()).to.equal(element.model);
-    //   expect(await this.txtModel.getText()).toEqual(element.model);
-      await browser.pause(2000)
+      //   expect(await this.txtModel.getText()).toEqual(element.model);
+      await browser.pause(2000);
       // await browser.keys("Enter");
       await this.inputQuantity.setValue(element.quantity);
-      await browser.pause(2000)
+      await browser.pause(2000);
       await this.btnAddToCart.click();
-      await browser.pause(2000)
+      await browser.pause(2000);
     }
-    
   };
 
-  verifyShopingCart = async (table)=>{
+  calculation = async () =>{
+    let checkItems = await this.getNumberItem;
+    console.log(checkItems);
+    for(let i = 0; i < checkItems.length; i++){
+      await this.listPrices.forEach(async (price) => {
 
-//    await Page.verifyPageHeadingCheckOut("verifyPageHeadingCheckOut")
+        const getPrice = await price.getText()
+        let convertPrice = await getPrice.substring(1)
+        console.log(`each price: ${convertPrice}`)
 
-   const tableRows = table.hashes();
-   for(const row of tableRows){
-    await this.listTitleName.forEach(async (value) =>{
-        const titleName = await value.getText()
-        if(titleName === row.name){
-            chai.expect(titleName).to.equal(row.name);
-            return
-        }
-    })
-
-    await this.listQuantity.forEach(async (value) =>{
-        const quanTity = await value.getText()
-        if(quanTity === row.quantity){
-            chai.expect(quanTity).to.equal(row.quantity);
-            return
-        }
-    })
-
-
-   }
-
-
+      })
+    }
   }
 
+  verifyShopingCart = async (table) => {
+    //    await Page.verifyPageHeadingCheckOut("verifyPageHeadingCheckOut")
 
+    const tableRows = table.hashes();
+    let checkItems = await this.getNumberItem;
+    console.log(`1`);
+    console.log(checkItems);
+    console.log(`2`);
+    const tableRow = table.hashes();
+    console.log(tableRow);
 
+    for (const row of tableRows) {
+
+      
+
+      await this.listTitleName.forEach(async (value) => {
+        const titleName = await value.getText();
+        if (titleName === row.name) {
+          chai.expect(titleName).to.equal(row.name);
+          return;
+        }
+      });
+
+      await this.listQuantity.forEach(async (value) => {
+        const quanTity = await value.getText();
+        if (quanTity === row.quantity) {
+          chai.expect(quanTity).to.equal(row.quantity);
+          return;
+        }
+      });
+
+      await this.listPrices.forEach(async (value) => {
+        const prices = await value.getText();
+        if (prices === row.price) {
+          chai.expect(prices).to.equal(row.price);
+          return;
+        }
+      });
+    }
+  };
 }
 
-export default new ShippingAddressPage();
+export default new shoppingCartPage();

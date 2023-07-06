@@ -126,7 +126,7 @@ class PopUpCart extends Page {
     }
   };
 
-  _updateQuantity = async (table) => {
+  updateQuantity = async (table) => {
     console.log(`123134`);
     const tableRow = table.hashes();
     console.log(tableRow);
@@ -138,10 +138,10 @@ class PopUpCart extends Page {
         if (titleName === row.name) {
           const setInput = $(
             `//*[@class="product"]//*[contains(text(),'${row.name}')]/../..//*[@data-item-qty]`
-          );
+          ); 
           await this.click(await setInput);
           await browser.keys(["Control", "A"]);
-          await browser.keys(["Control", "C"]);
+          // await browser.keys(["Control", "C"]);
           await browser.keys("Delete");
           await setInput.setValue(row.quantity);
           const btnUpdate = await $(
@@ -171,25 +171,19 @@ class PopUpCart extends Page {
       // }
     }
   };
-  get updateQuantity() {
-    return this._updateQuantity;
-  }
-  set updateQuantity(value) {
-    this._updateQuantity = value;
-  }
+
 
   // DONE
-  // updateQuantity_2 = async () => {
-  //   console.log(`123134`);
+  updateQuantity_2 = async () => {
+    console.log(`123134`);
 
-  //   const setInput =  $(`//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@data-item-qty]`)
+    const setInput =  $(`//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@data-item-qty]`)
 
-  //   const btnUpdate =  $(`//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@class="details-qty qty"]/button`)
-  //   await setInput.setValue(123);
-  //   await browser.pause(2000)
-  //   await click(btnUpdate)
-  //   await browser.pause(2000)
-
-  // };
+    const btnUpdate =  $(`//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@class="details-qty qty"]/button`)
+    await setInput.setValue(123);
+    await browser.pause(2000)
+    await this.click(await btnUpdate);
+    await browser.pause(2000)
+  };
 }
 export default new PopUpCart();
