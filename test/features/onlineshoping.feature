@@ -52,7 +52,7 @@ Feature: SignUp, Sign In and Purchase Product
     #         | Gear     | Bags              | Push It Messenger Bag               | 24-WB04 | 20       |
     #         | Gear     | Fitness Equipment | Harmony Lumaflex™ Strength Band Kit | 24-UG03 | 10       |
     #     And User clicks on YourCart button
-        And Calculate all the products
+        # And Calculate all the products
     #     And I verify generally all the information is correct in the popup
     #         | totalItems | totalPrices | items |
     #         | 30         | 1120        | 2     |
@@ -89,6 +89,7 @@ Feature: SignUp, Sign In and Purchase Product
         And User clicks on YourCart button
         And User clicks on View And Edit button
         When Calculation each item in the shopping cart
+        Then Verify the total price calculation is correct with the page shown
         # And Verify details information are correct
             # | items | name                                | price | quantity | subtotal |
             # | 2     | Push It Messenger Bag               | $45   | 50       | 2250     |

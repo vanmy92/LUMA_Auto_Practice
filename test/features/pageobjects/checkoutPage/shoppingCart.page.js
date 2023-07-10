@@ -9,13 +9,15 @@ class shoppingCartPage extends Page {
   get listTitleName() {
     return $$(`//*[@class="cart item"]//*[@class="product-item-name"]/a`);
   }
-  get listQuantity(){
-    return $$(`//*[@class="col qty"]/div/div/label/input`)
+  get listQuantity() {
+    return $$(`//*[@class="col qty"]/div/div/label/input`);
   }
-  get listPrices(){
-    return $$(`//*[@class="col price"]//*[contains(text(),'$')]`)
+  get listPrices() {
+    return $$(`//*[@class="col price"]//*[contains(text(),'$')]`);
   }
-
+  get subTotal(){
+    return $(`//*[@class="totals sub"]/td/span`)
+  }
   get getNumberItem() {
     return this.getItemsNumber.length;
   }
@@ -62,18 +64,55 @@ class shoppingCartPage extends Page {
     }
   };
 
-  calculation = async () =>{
+  calculation = async () => {
     let checkItems = await this.getNumberItem;
+    console.log(`calulation:`);
     console.log(checkItems);
-    for(let i = 0; i < checkItems.length; i++){
-      await this.listPrices.forEach(async (price) => {
-
-        const getPrice = await price.getText()
-        let convertPrice = await getPrice.substring(1)
-        console.log(`each price: ${convertPrice}`)
-
-      })
+    let total = 0;
+    for (let i = 0; i < checkItems; i++) {
+      let nameItem = await this.listTitleName[i].getText();
+      let getPrice = await this.listPrices[i].getText();
+      let convertPrice = await getPrice.substring(1);
+      let qty = await this.listQuantity[i].getValue();
+      let convertQty = parseInt(qty);
+      let totalEachItem = convertPrice * convertQty;
+      console.log("Each item");
+      console.log(
+        `${nameItem} has ${convertQty} qty with each price: $${convertPrice} and total price: $${totalEachItem}`
+      );
+      total += totalEachItem;
     }
+    console.log(`total price: ${total}`);
+  };
+
+  subtotalBeforeDiscount = async () => {
+    let checkItems = await this.getNumberItem;
+    let total = 0;
+    for (let i = 0; i < checkItems; i++) {
+      let nameItem = await this.listTitleName[i].getText();
+      let getPrice = await this.listPrices[i].getText();
+      let convertPrice = await getPrice.substring(1);
+      let qty = await this.listQuantity[i].getValue();
+      let convertQty = parseInt(qty);
+      let totalEachItem = convertPrice * convertQty;
+      total += totalEachItem;
+    }
+    return total;
+  };
+  verifyCalculateTOSubTotal = async () => {
+    let calculate = await this.subtotalBeforeDiscount()
+    console.log(`calculate`)
+    console.log(calculate)
+    let subtotal = await this.subTotal.getText()
+    console.log(`subtotal`)
+    console.log(subtotal)
+    let convertSubtotal_1 =await subtotal.substring(1)
+    console.log(convertSubtotal_1)
+    console.log(typeof convertSubtotal_1)
+    convertSubtotal_1 =await parseInt(convertSubtotal_1.replace(/,/g, ""))
+    console.log(convertSubtotal_1)
+    console.log(typeof convertSubtotal_1)
+    chai.expect(calculate).to.equal(parseInt(convertSubtotal_1));
   }
 
   verifyShopingCart = async (table) => {
@@ -88,9 +127,6 @@ class shoppingCartPage extends Page {
     console.log(tableRow);
 
     for (const row of tableRows) {
-
-      
-
       await this.listTitleName.forEach(async (value) => {
         const titleName = await value.getText();
         if (titleName === row.name) {

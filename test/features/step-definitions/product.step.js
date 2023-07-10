@@ -65,15 +65,16 @@ Then(/^I shall be able to buy the product$/, async () =>{
 Then(/^User clicks on YourCart button$/, async () =>{
     
     await popUpCart.clickYourCart()
-   await browser.pause(1000)
-   await browser.debug()
+   await browser.pause(2000)
+//    await browser.debug()
 
 })
 
 Then(/^User clicks on View And Edit button$/, async () =>{
     
     await popUpCart.clickViewAndEditCart()
-    await browser.debug()
+   await browser.pause(2000)
+    // await browser.debug()
 
 })
 When(/^Calculation each item in the shopping cart$/, async () =>{
@@ -86,6 +87,12 @@ When(/^Calculation each item in the shopping cart$/, async () =>{
 Then(/^Verify details information are correct$/, async (table) =>{
     
     await shoppingCartPage.verifyShopingCart(table)
+    await browser.debug()
+
+})
+Then(/^Verify the total price calculation is correct with the page shown$/, async () =>{
+    
+    await shoppingCartPage.verifyCalculateTOSubTotal()
     await browser.debug()
 
 })
