@@ -15,8 +15,8 @@ class shoppingCartPage extends Page {
   get listPrices() {
     return $$(`//*[@class="col price"]//*[contains(text(),'$')]`);
   }
-  get subTotal(){
-    return $(`//*[@class="totals sub"]/td/span`)
+  get subTotal() {
+    return $(`//*[@class="totals sub"]/td/span`);
   }
   get getNumberItem() {
     return this.getItemsNumber.length;
@@ -100,20 +100,20 @@ class shoppingCartPage extends Page {
     return total;
   };
   verifyCalculateTOSubTotal = async () => {
-    let calculate = await this.subtotalBeforeDiscount()
-    console.log(`calculate`)
-    console.log(calculate)
-    let subtotal = await this.subTotal.getText()
-    console.log(`subtotal`)
-    console.log(subtotal)
-    let convertSubtotal_1 =await subtotal.substring(1)
-    console.log(convertSubtotal_1)
-    console.log(typeof convertSubtotal_1)
-    convertSubtotal_1 =await parseInt(convertSubtotal_1.replace(/,/g, ""))
-    console.log(convertSubtotal_1)
-    console.log(typeof convertSubtotal_1)
+    let calculate = await this.subtotalBeforeDiscount();
+    console.log(`calculate`);
+    console.log(calculate);
+    let subtotal = await this.subTotal.getText();
+    console.log(`subtotal`);
+    console.log(subtotal);
+    let convertSubtotal_1 = await subtotal.substring(1);
+    console.log(convertSubtotal_1);
+    console.log(typeof convertSubtotal_1);
+    convertSubtotal_1 = await parseInt(convertSubtotal_1.replace(/,/g, ""));
+    console.log(convertSubtotal_1);
+    console.log(typeof convertSubtotal_1);
     chai.expect(calculate).to.equal(parseInt(convertSubtotal_1));
-  }
+  };
 
   verifyShopingCart = async (table) => {
     //    await Page.verifyPageHeadingCheckOut("verifyPageHeadingCheckOut")
@@ -155,3 +155,5 @@ class shoppingCartPage extends Page {
 }
 
 export default new shoppingCartPage();
+
+
