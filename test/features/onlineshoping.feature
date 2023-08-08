@@ -52,7 +52,7 @@ Feature: SignUp, Sign In and Purchase Product
     #         | Gear     | Bags              | Push It Messenger Bag               | 24-WB04 | 20       |
     #         | Gear     | Fitness Equipment | Harmony Lumaflex™ Strength Band Kit | 24-UG03 | 10       |
     #     And User clicks on YourCart button
-        # And Calculate all the products
+    # And Calculate all the products
     #     And I verify generally all the information is correct in the popup
     #         | totalItems | totalPrices | items |
     #         | 30         | 1120        | 2     |
@@ -68,35 +68,47 @@ Feature: SignUp, Sign In and Purchase Product
 
 
     # @regression
-    # Scenario: TC_004 User edit some qty in YourCartPopup  not DONE may congty please check again
+    # Scenario: TC_004 User edit some qty in YourCartPopup  DONE
     #     Given I am on the home page
     #     Then Navigate to SignIn page
     #     And I loggin with the defualt username and password
     #     And User clicks on YourCart button
     #     And I want to update some quantity in each items in the popup
     #         | name                                | quantity |
-    #         | Push It Messenger Bag               | 50       |
-    #         | Harmony Lumaflex™ Strength Band Kit | 50       |
+    #         | Push It Messenger Bag               | 30       |
+    #         | Harmony Lumaflex™ Strength Band Kit | 30       |
+       
 
 
-
-
-    @regression
-    Scenario: TC_004 User edit some qty in YourCartPopup
+    
+     @regression
+    Scenario: TC_004 User edit some qty in YourCartPopup and verify that total price in progress
         Given I am on the home page
         Then Navigate to SignIn page
         And I loggin with the defualt username and password
         And User clicks on YourCart button
-        And User clicks on View And Edit button
-        When Calculation each item in the shopping cart
-        Then Verify the total price calculation is correct with the page shown
-        # And Verify details information are correct
-            # | items | name                                | price | quantity | subtotal |
-            # | 2     | Push It Messenger Bag               | $45   | 50       | 2250     |
-            # | 2     | Harmony Lumaflex™ Strength Band Kit | $22   | 50       | 1100     |
-            # | name                                | price | quantity |
-            # | Push It Messenger Bag               | $45   | 50       |
-            # | Harmony Lumaflex™ Strength Band Kit | $22   | 50       |
+        And I want to update some quantity in each items in the popup
+            | name                                | quantity |
+            | Push It Messenger Bag               | 30       |
+            | Harmony Lumaflex™ Strength Band Kit | 30       |
+        And Calculate all the products
+        And I verify generally all the information is correct in the popup
+            | totalItems | totalPrices | items |
+            | 60         | 2010        | 2     |
+
+
+
+
+# @regression
+# Scenario: Verify the total price is correct in page show  -> DONE
+#     Given I am on the home page
+#     Then Navigate to SignIn page
+#     And I loggin with the defualt username and password
+#     And User clicks on YourCart button
+#     And User clicks on View And Edit button
+#     When Calculation each item in the shopping cart
+# Then Verify the total price calculation is correct with the page shown
+
 
 
 

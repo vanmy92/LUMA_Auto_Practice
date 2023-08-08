@@ -23,8 +23,12 @@ class PopUpCart extends Page {
     );
   }
 
-  get txtEachNameItem() {
-    return $$(`//*[@class="minicart-items-wrapper"]/ol/li/div/div/strong/a`);
+  // get txtEachNameItem() {
+  //   return $$(`//*[@class="minicart-items-wrapper"]/ol/li/div/div/strong/a`);
+  // }
+
+   get txtEachNameItem() {
+    return $$(`//*[@id="mini-cart"]/li/div/div/strong/a`);
   }
 
   get numberItems() {
@@ -130,8 +134,14 @@ class PopUpCart extends Page {
     console.log(`123134`);
     const tableRow = table.hashes();
     console.log(tableRow);
+    const setInput_1 = await $(
+      `//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]`
+    ).getText(); 
+    console.log(setInput_1)
+    console.log(`123134456789`);
+
     for (const row of tableRow) {
-      await this.txtEachNameItem.forEach(async (value) => {
+      await this.txtEachNameItem.forEach( async (value) => {
         const titleName = await value.getText();
         console.log(`1`);
         console.log(titleName);
@@ -141,9 +151,11 @@ class PopUpCart extends Page {
           ); 
           await this.click(await setInput);
           await browser.keys(["Control", "A"]);
+          await browser.pause(1000);
           // await browser.keys(["Control", "C"]);
           await browser.keys("Delete");
           await setInput.setValue(row.quantity);
+          await browser.pause(5000);
           const btnUpdate = await $(
             `//*[@class="product"]//*[contains(text(),'${row.name}')]/../..//*[@class="details-qty qty"]/button`
           );
