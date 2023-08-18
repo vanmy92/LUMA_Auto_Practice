@@ -61,4 +61,10 @@ Then(/^Verify user is logged user$/, async () => {
     // allureReporter.addSeverity("minor")
     await browser.pause(1000);
   });
+  Then(/^Create a list account$/, async () => {
+    await authPage.verifyLoginSuccefullNewAccount();
+    // allureReporter.addSeverity("minor")
+    await browser.pause(1000);
+  });
+  
   
