@@ -96,3 +96,10 @@ Then(/^Verify the total price calculation is correct with the page shown$/, asyn
     await browser.debug()
 
 })
+Then(/^User clicks delete all items in YourCart$/, async () =>{
+    
+    await popUpCart.deleteAllItemsInYourCart()
+    await browser.debug()
+
+})
+

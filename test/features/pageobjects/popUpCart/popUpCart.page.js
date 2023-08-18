@@ -27,7 +27,7 @@ class PopUpCart extends Page {
   //   return $$(`//*[@class="minicart-items-wrapper"]/ol/li/div/div/strong/a`);
   // }
 
-   get txtEachNameItem() {
+  get txtEachNameItem() {
     return $$(`//*[@id="mini-cart"]/li/div/div/strong/a`);
   }
 
@@ -38,10 +38,19 @@ class PopUpCart extends Page {
   get btnYourCart() {
     return $(`//*[@class="action showcart"]`);
   }
-  get btnViewAndEditCard(){
-    return $(`//*[contains(text(),'View and Edit Cart')]`)
+  get btnViewAndEditCard() {
+    return $(`//*[contains(text(),'View and Edit Cart')]`);
   }
   // Actions
+  get btnDeleteItem() {
+    return $$(`//span[.='Remove']`);
+  }
+  get btnDeleteItem_1() {
+    return $(`//span[.='Remove']`);
+  }
+  get btnOK() {
+    return $("//span[.='OK']");
+  }
 
   async clickProceedToCheckOut() {
     await this.click(await this.btnProceedToCheckout);
@@ -52,6 +61,7 @@ class PopUpCart extends Page {
   async clickViewAndEditCart() {
     await this.click(await this.btnViewAndEditCard);
   }
+
   convertTotalPrice = async () => {
     let totalPriceUI = await this.txtTotalPrice.getText();
     let convertTotal = parseFloat(totalPriceUI.replace(/[^0-9.-]+/g, ""));
@@ -136,19 +146,19 @@ class PopUpCart extends Page {
     console.log(tableRow);
     const setInput_1 = await $(
       `//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]`
-    ).getText(); 
-    console.log(setInput_1)
+    ).getText();
+    console.log(setInput_1);
     console.log(`123134456789`);
 
     for (const row of tableRow) {
-      await this.txtEachNameItem.forEach( async (value) => {
+      await this.txtEachNameItem.forEach(async (value) => {
         const titleName = await value.getText();
         console.log(`1`);
         console.log(titleName);
         if (titleName === row.name) {
           const setInput = $(
             `//*[@class="product"]//*[contains(text(),'${row.name}')]/../..//*[@data-item-qty]`
-          ); 
+          );
           await this.click(await setInput);
           await browser.keys(["Control", "A"]);
           await browser.pause(1000);
@@ -184,18 +194,53 @@ class PopUpCart extends Page {
     }
   };
 
-
   // DONE
   updateQuantity_2 = async () => {
     console.log(`123134`);
 
-    const setInput =  $(`//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@data-item-qty]`)
+    const setInput = $(
+      `//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@data-item-qty]`
+    );
 
-    const btnUpdate =  $(`//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@class="details-qty qty"]/button`)
+    const btnUpdate = $(
+      `//*[@class="product"]//*[contains(text(),'Push It Messenger Bag')]/../..//*[@class="details-qty qty"]/button`
+    );
     await setInput.setValue(123);
-    await browser.pause(2000)
+    await browser.pause(2000);
     await this.click(await btnUpdate);
-    await browser.pause(2000)
+    await browser.pause(2000);
   };
+
+  deleteAllItemsInYourCart = async () => {
+    let itemsDelete = await this.btnDeleteItem.length;
+    // console.log(`first`);
+    // console.log(itemsDelete);
+    const btnUpdate = $(
+      `//span[.='Remove']`
+    );
+    // await this.click(await this.btnDeleteItem_1);
+    await this.click(await btnUpdate);
+
+    await browser.pause(2000);
+    await this.click(await btnOK);
+    await browser.pause(2000);
+
+    
+    // await this.btnDeleteItem.forEach(async (value) => {
+    //   await this.click(await value);
+    //   await browser.pause(2000);
+    //   await this.click(await btnOK);
+    //   await browser.pause(2000);
+    // });
+
+
+  };
+
+  // for(const item of await this.btnDeleteItem){
+  //   await this.click(await item)
+  //   await browser.pause(2000)
+  //   await this.click(await this.btnOK)
+  //   await browser.pause(2000)
+  // }
 }
 export default new PopUpCart();

@@ -1,6 +1,8 @@
 import writeRead from "../ReadOrWriteFile/writeRead";
+import { expect } from "chai";
 import Page from "./page";
-class AuthPage extends Page{
+import chai from "chai";
+class AuthPage extends Page {
   get input_firstName() {
     return $("#firstname");
   }
@@ -46,10 +48,8 @@ class AuthPage extends Page{
     await this.input_password.setValue(pw);
     await this.input_confirmPassword.setValue(cfpw);
     await browser.pause(2000);
-
     await this.btnCreateAnAccount.click();
     await browser.pause(2000);
-
   };
 
   signIn = async () => {
@@ -67,10 +67,16 @@ class AuthPage extends Page{
     await browser.pause(1000);
     await this.btnSignOut.click();
   };
-  async clickMyAccount(){
-    await this.click(await this.btnLogout_1)
+  async clickMyAccount() {
+    await this.click(await this.btnLogout_1);
     await browser.pause(1000);
-    await this.click(await this.btnMyAccount)
+    await this.click(await this.btnMyAccount);
   }
+  verifyLoginSuccefullNewAccount = async ()=>{
+    const messageText = $('div*=Thank you for registering with Main Website Store.').getText();
+    const textcomparise = "Thank you for registering with Main Website Store."
+    await chai.expect(await messageText).to.equal(textcomparise);
+  }
+
 }
 export default new AuthPage();
