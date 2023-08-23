@@ -11,14 +11,20 @@ Feature: SignUp, Sign In and Purchase Product
     Scenario: TC_001 Create New a list user/SignUp  -> in progress
         Given I am on the home page
         Then Navigate to SignUp page
-        And Create a list account 
-            | FirstName | LastName | Email            | Password  | ConfirmPassword |
-            | abc       | abc      | a1b1c1@gmail.com | asdf1234` | asdf1234`       |
-            | qwer      | qwer     | a2b2c2@gmail.com | asdf1234` | asdf1234`       |
-            | zxcv      | zxcv     | a3b3c3@gmail.com | asdf1234` | asdf1234`       |
-            | qasw      | qasw     | a4b4c4@gmail.com | asdf1234` | asdf1234`       |
-
+        And Create a list account by json file
         And Verify user is logged user
+
+
+
+#  | FirstName | LastName | Email            | Password  | ConfirmPassword |
+#             | abc       | abc      | a1b1c1@gmail.com | asdf123@A | asdf123@A       |
+#             | qwer      | qwer     | a2b2c2@gmail.com | asdf123@B | asdf123@B       |
+#             | zxcv      | zxcv     | a3b3c3@gmail.com | asdf123@C | asdf123@C       |
+#             | qasw      | qasw     | a4b4c4@gmail.com | asdf123@D | asdf123@D       |
+
+
+
+
 
 # Thank you for registering with Main Website Store.
 # @sanity

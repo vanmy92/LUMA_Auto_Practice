@@ -61,10 +61,10 @@ Then(/^Verify user is logged user$/, async () => {
     // allureReporter.addSeverity("minor")
     await browser.pause(1000);
   });
-  Then(/^Create a list account$/, async () => {
-    await authPage.verifyLoginSuccefullNewAccount();
+  Then(/^Create a list account by json file$/, async () => {
+    await authPage.createAccountByJson();
     // allureReporter.addSeverity("minor")
-    await browser.pause(1000);
+    await browser.debug()
   });
   
   
