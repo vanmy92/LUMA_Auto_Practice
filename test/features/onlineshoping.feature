@@ -7,12 +7,12 @@ Feature: SignUp, Sign In and Purchase Product
     #     And Create an account with the random username
     #     And Verify user is logged user
 
-    @sanity
-    Scenario: TC_001 Create New a list user/SignUp  -> in progress
-        Given I am on the home page
-        Then Navigate to SignUp page
-        And Create a list account by json file
-        And Verify user is logged user
+    # @sanity
+    # Scenario: TC_001 Create New a list user/SignUp  -> in progress
+    #     Given I am on the home page
+    #     Then Navigate to SignUp page
+    #     And Create a list account by json file
+    #     And Verify user is logged user
 
 
 
@@ -167,10 +167,10 @@ Feature: SignUp, Sign In and Purchase Product
 
 
 
-# And I verify details information are correct in the popup
-#     | name                                | price | quantity |
-#     | Push It Messenger Bag               | 22    | 20       |
-#     | Harmony Lumaflex™ Strength Band Kit | 45    | 10       |
+And I verify details information are correct in the popup
+    | name                                | price | quantity |
+    | Push It Messenger Bag               | 22    | 20       |
+    | Harmony Lumaflex™ Strength Band Kit | 45    | 10       |
 
 
 

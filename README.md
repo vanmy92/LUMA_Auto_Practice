@@ -19,6 +19,8 @@ npm install faker --save-dev
 npm install --save-dev chai
 
 
+ npm run wdio:sanity
+
 
 
 npm install @wdio/allure-reporter --save-dev
